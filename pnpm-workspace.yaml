@@ -6,3 +6,10 @@ overrides:
   magic-string: '1.1.0'
   smol-toml: '1.7.1'
   '@napi-rs/wasm-runtime': '1.2.2'
+
+# pnpm 11 refuses to run any dependency's install/postinstall scripts
+# unless explicitly allow-listed (interactively via `pnpm approve-builds`
+# locally, or here for non-interactive CI installs). esbuild's postinstall
+# just downloads its platform binary — safe to allow.
+onlyBuiltDependencies:
+  - esbuild
