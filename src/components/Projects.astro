@@ -17,19 +17,20 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
 ---
 
 <section id="projects" class="section">
-  <p class="eyebrow mb-6" data-reveal>{t('projects.eyebrow')}</p>
-  <div class="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between" data-reveal>
-    <h2 class="heading-md max-w-xl">{t('projects.title')}</h2>
-    <p class="max-w-sm text-sm leading-relaxed text-text-muted">{t('projects.subtitle')}</p>
+  <div class="section-head">
+    <span class="section-head__label">03 — {t('projects.eyebrow')}</span>
+    <h2>{t('projects.title')}</h2>
   </div>
 
   {
     projects.length === 0 ? (
-      <p class="font-mono text-sm text-text-dim">{t('projects.empty')}</p>
+      <p class="indent font-mono text-sm text-ink-faint">{t('projects.empty')}</p>
     ) : (
-      <div class="grid items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      <div class="indent grid items-stretch border border-line-soft sm:grid-cols-2" data-reveal>
         {projects.map((project, i) => (
-          <ProjectCard project={project} lang={lang} index={i} />
+          <div class:list={['flex', i > 0 && 'border-t border-line-soft sm:border-t-0 sm:border-l']}>
+            <ProjectCard project={project} lang={lang} />
+          </div>
         ))}
       </div>
     )

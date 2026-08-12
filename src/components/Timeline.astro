@@ -13,19 +13,22 @@ const entries = timeline[lang];
 ---
 
 <section id="timeline" class="section">
-  <p class="eyebrow mb-6" data-reveal>{t('timeline.eyebrow')}</p>
-  <h2 class="heading-md mb-14 max-w-xl" data-reveal>{t('timeline.title')}</h2>
+  <div class="section-head">
+    <span class="section-head__label">04 — {t('timeline.eyebrow')}</span>
+    <h2>{t('timeline.title')}</h2>
+  </div>
 
-  <ol class="relative space-y-10 border-l border-line pl-8">
+  <div class="indent" data-reveal>
     {entries.map((entry, i) => (
-      <li class="relative" data-reveal data-reveal-delay={i * 100}>
-        <span class="absolute -left-[calc(2rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full bg-primary-soft shadow-[0_0_0_4px_var(--color-bg-panel)]"></span>
-        <p class="font-mono text-xs uppercase tracking-widest text-text-dim">{entry.period}</p>
-        <h3 class="mt-2 font-display text-xl font-semibold text-text">
-          {entry.role} <span class="text-text-dim">/</span> <span class="text-primary-soft">{entry.place}</span>
-        </h3>
-        <p class="mt-2 max-w-2xl text-sm leading-relaxed text-text-muted">{entry.description}</p>
-      </li>
+      <div class:list={['grid grid-cols-1 gap-2 py-6 sm:grid-cols-[140px_1fr] sm:gap-8 sm:py-7', i > 0 && 'border-t border-line-soft']}>
+        <p class="pt-1 font-mono text-[0.76rem] text-ink-faint">{entry.period}</p>
+        <div>
+          <h3 class="font-body text-base font-semibold text-ink">
+            {entry.role} <span class="font-normal text-ink-muted">· {entry.place}</span>
+          </h3>
+          <p class="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{entry.description}</p>
+        </div>
+      </div>
     ))}
-  </ol>
+  </div>
 </section>
