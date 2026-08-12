@@ -39,6 +39,7 @@ export const ui = {
     'projects.title': 'Proyectos destacados',
     'projects.subtitle':
       'Una selección de sistemas que he diseñado y construido, de la idea al despliegue.',
+    'projects.featured': 'Destacado',
     'projects.status.live': 'En producción',
     'projects.status.wip': 'En desarrollo',
     'projects.status.archived': 'Archivado',
@@ -93,6 +94,7 @@ export const ui = {
     'projects.title': 'Featured projects',
     'projects.subtitle':
       "A selection of systems I've designed and built, from idea to deployment.",
+    'projects.featured': 'Featured',
     'projects.status.live': 'Live',
     'projects.status.wip': 'In progress',
     'projects.status.archived': 'Archived',

@@ -32,3 +32,13 @@ const { lang, title, description } = Astro.props;
     <slot />
   </body>
 </html>
+
+<script>
+  import { initInteractions } from '../lib/interactions';
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initInteractions();
+  } else {
+    document.addEventListener('DOMContentLoaded', initInteractions);
+  }
+</script>

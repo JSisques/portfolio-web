@@ -12,6 +12,7 @@
   --color-bg: #05070f;
   --color-bg-elevated: #0a0f22;
   --color-bg-panel: #0d1330;
+  --color-bg-panel-strong: #121a3d;
   --color-blueprint: #14206b;
   --color-primary: #4169ff;
   --color-primary-soft: #7d95ff;
@@ -19,6 +20,7 @@
   --color-accent: #ffb020;
   --color-accent-soft: #ffcb6b;
   --color-line: #26337a;
+  --color-line-soft: #1a2352;
   --color-text: #e9ecf9;
   --color-text-muted: #9aa3c7;
   --color-text-dim: #5c6491;
@@ -29,6 +31,7 @@
 
   --animate-drift: drift 18s ease-in-out infinite;
   --animate-blink: blink 1.6s steps(2, jump-none) infinite;
+  --animate-spin-slow: spin 14s linear infinite;
 }
 
 @keyframes drift {
@@ -85,6 +88,130 @@ body {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
 }
 
+/* Faint film-grain overlay for a more premium, less flat canvas. */
+.bg-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ---------------------------------------------------------------------- */
+/* Custom cursor — progressive enhancement, only on fine-pointer devices  */
+/* once JS confirms it can drive it smoothly.                             */
+/* ---------------------------------------------------------------------- */
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button {
+  cursor: none;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  border-radius: 999px;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  transition: opacity 0.2s ease;
+}
+
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--color-primary-soft);
+  opacity: 0.6;
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    opacity 0.25s ease,
+    border-color 0.25s ease;
+}
+
+html.cursor-hover .cursor-ring {
+  width: 52px;
+  height: 52px;
+  border-color: var(--color-accent);
+  opacity: 0.9;
+}
+
+html.cursor-hidden .cursor-dot,
+html.cursor-hidden .cursor-ring {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Scroll reveal — elements fade/rise into place; instant + no motion for */
+/* prefers-reduced-motion or before JS has initialised the observer.      */
+/* ---------------------------------------------------------------------- */
+html.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+html.reveal-ready [data-reveal].is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Tilt cards — subtle 3D rotation toward the pointer, plus a spotlight   */
+/* that follows the cursor across the card surface.                      */
+/* ---------------------------------------------------------------------- */
+.tilt-card {
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--color-primary-soft) 16%, transparent),
+    transparent 65%
+  );
+  transition: opacity 0.4s ease;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card {
+    transform: none !important;
+    transition: none;
+  }
+}
+
 @utility btn {
   @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-mono text-sm font-medium tracking-wide transition-all duration-300;
 }
@@ -111,8 +238,12 @@ body {
     @apply font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl;
   }
 
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-soft via-primary-soft to-accent-soft bg-clip-text text-transparent;
+  }
+
   .btn-primary {
-    @apply btn bg-primary text-white shadow-[0_0_0_1px_rgba(65,105,255,0.4),0_8px_30px_-8px_rgba(65,105,255,0.7)] hover:shadow-[0_0_0_1px_rgba(65,105,255,0.6),0_12px_40px_-6px_rgba(65,105,255,0.9)] hover:-translate-y-0.5;
+    @apply btn bg-primary text-white shadow-[0_0_0_1px_rgba(65,105,255,0.4),0_8px_30px_-8px_rgba(65,105,255,0.7)] hover:shadow-[0_0_0_1px_rgba(65,105,255,0.6),0_16px_44px_-8px_rgba(65,105,255,0.95)] hover:-translate-y-0.5;
   }
 
   .btn-ghost {
@@ -120,10 +251,22 @@ body {
   }
 
   .panel {
-    @apply rounded-2xl border border-line bg-bg-panel/60 backdrop-blur-sm;
+    @apply relative rounded-2xl border border-line bg-bg-panel/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm;
   }
 
   .tag {
     @apply rounded-full border border-line px-3 py-1 font-mono text-[0.65rem] uppercase tracking-wider text-text-muted;
+  }
+
+  .nav-link {
+    @apply relative transition-colors hover:text-primary-soft;
+  }
+
+  .nav-link.is-active {
+    @apply text-primary-soft;
+  }
+
+  [data-nav].is-scrolled {
+    @apply border-primary-soft/30 bg-bg/90 shadow-[0_8px_30px_-12px_rgba(65,105,255,0.4)];
   }
 }
