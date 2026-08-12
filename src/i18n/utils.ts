@@ -1,4 +1,5 @@
 import { ui, defaultLocale, type Locale, type UiKey } from './ui';
+import { withBase } from '../lib/paths';
 
 export function useTranslations(lang: Locale) {
   return function t(key: UiKey): string {
@@ -11,6 +12,6 @@ export function otherLocale(lang: Locale): Locale {
 }
 
 export function localizedPath(lang: Locale, path = '/'): string {
-  if (lang === defaultLocale) return path;
-  return `/${lang}${path === '/' ? '' : path}`;
+  const rel = lang === defaultLocale ? path : `/${lang}${path === '/' ? '' : path}`;
+  return withBase(rel);
 }
