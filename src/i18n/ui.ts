@@ -12,21 +12,17 @@ export const ui = {
     'nav.projects': 'Proyectos',
     'nav.timeline': 'Trayectoria',
     'nav.contact': 'Contacto',
-    'hero.eyebrow': 'Backend Engineer',
-    'hero.title.line1': 'Construyo',
-    'hero.title.line2': 'sistemas',
+    'hero.status': 'Backend Engineer — construyendo Gardenia ahora mismo',
+    'hero.title.line1': 'Diseño sistemas que siguen en pie',
+    'hero.title.line2': 'dos años después.',
     'hero.subtitle':
-      'Backend engineer especializado en TypeScript y NestJS: arquitecturas DDD, CQRS y orientadas a eventos. Diseño software pensado para seguir funcionando bien dentro de dos años, y la infraestructura —mi propio homelab incluido— que lo sostiene.',
+      'Backend engineer especializado en TypeScript y NestJS: arquitecturas orientadas a eventos, Domain-Driven Design y CQRS. Y la infraestructura, homelab propio incluido, que las sostiene.',
     'hero.cta.projects': 'Ver proyectos',
     'hero.cta.contact': 'Hablemos',
-    'hero.scroll': 'Scroll',
-    'now.title': 'Ahora mismo',
-    'now.body':
-      'Construyendo mi homelab como código —Proxmox, K3s, Argo CD— y preparando el despliegue de Gardenia, la primera aplicación pública que correrá sobre él.',
     'about.eyebrow': 'Sobre mí',
     'about.title': 'De la idea al sistema en producción',
     'about.body1':
-      'Llevo más de 4 años construyendo el "motor" que no se ve: backends escalables y mantenibles en TypeScript y NestJS, con foco en Domain-Driven Design, CQRS y arquitecturas orientadas a eventos. Me interesa menos "que funcione" y más "que siga funcionando bien dentro de dos años".',
+      'Llevo más de cuatro años construyendo el motor que no se ve: backends escalables y mantenibles en TypeScript y NestJS, con foco en <strong>Domain-Driven Design</strong>, CQRS y arquitecturas orientadas a eventos. Me interesa menos <em>que funcione</em> y más que siga funcionando bien dentro de dos años.',
     'about.body2':
       'Cuando una idea me parece útil, no me quedo solo en pensarla: la construyo. Mi propio homelab es el mejor ejemplo fuera del trabajo — Proxmox, Kubernetes, Terraform, Ansible y Argo CD desplegando y monitorizando mis propios proyectos, punta a punta.',
     'stack.eyebrow': 'Herramientas',
@@ -36,10 +32,7 @@ export const ui = {
     'stack.cat.frontend': 'Frontend',
     'stack.cat.infra': 'Infra & DevOps',
     'projects.eyebrow': 'Trabajo',
-    'projects.title': 'Proyectos destacados',
-    'projects.subtitle':
-      'Una selección de sistemas que he diseñado y construido, de la idea al despliegue.',
-    'projects.featured': 'Destacado',
+    'projects.title': 'Una selección de sistemas, de la idea al despliegue',
     'projects.status.live': 'En producción',
     'projects.status.wip': 'En desarrollo',
     'projects.status.archived': 'Archivado',
@@ -48,14 +41,11 @@ export const ui = {
     'projects.empty': 'Muy pronto habrá proyectos aquí.',
     'timeline.eyebrow': 'Trayectoria',
     'timeline.title': 'El camino hasta aquí',
-    'contact.eyebrow': 'Contacto',
-    'contact.title': '¿Construimos algo juntos?',
+    'contact.title': '¿Construimos el <em>próximo sistema</em> juntos?',
     'contact.body':
       'Siempre abierto a hablar de proyectos, ideas o simplemente sobre sistemas bien diseñados.',
-    'contact.cta': 'Escríbeme',
     'footer.rights': 'Todos los derechos reservados.',
-    'footer.built':
-      'Diseñado y construido con Astro, Tailwind CSS y Three.js. Alojado en mi propio homelab.',
+    'footer.built': 'Diseñado y construido con Astro y Tailwind CSS. Alojado en mi propio homelab.',
     'lang.switch': 'EN',
   },
   en: {
@@ -67,21 +57,17 @@ export const ui = {
     'nav.projects': 'Projects',
     'nav.timeline': 'Timeline',
     'nav.contact': 'Contact',
-    'hero.eyebrow': 'Backend Engineer',
-    'hero.title.line1': 'I build',
-    'hero.title.line2': 'systems',
+    'hero.status': 'Backend Engineer — building Gardenia right now',
+    'hero.title.line1': 'I design systems that still stand',
+    'hero.title.line2': 'two years later.',
     'hero.subtitle':
-      'Backend engineer specialized in TypeScript and NestJS: DDD, CQRS and event-driven architectures. I design software meant to still work well two years from now, and the infrastructure — my own homelab included — that keeps it running.',
+      'Backend engineer specialized in TypeScript and NestJS: event-driven architectures, Domain-Driven Design and CQRS. And the infrastructure, my own homelab included, that keeps it all running.',
     'hero.cta.projects': 'View projects',
     'hero.cta.contact': "Let's talk",
-    'hero.scroll': 'Scroll',
-    'now.title': 'Right now',
-    'now.body':
-      'Building my homelab as code —Proxmox, K3s, Argo CD— and getting ready to deploy Gardenia, the first public app that will run on top of it.',
     'about.eyebrow': 'About me',
     'about.title': 'From idea to system in production',
     'about.body1':
-      'I\'ve spent 4+ years building the "engine" nobody sees: scalable, maintainable backends in TypeScript and NestJS, focused on Domain-Driven Design, CQRS and event-driven architectures. I care less about "does it work" and more about "will it still work well two years from now".',
+      'I\'ve spent more than four years building the engine nobody sees: scalable, maintainable backends in TypeScript and NestJS, focused on <strong>Domain-Driven Design</strong>, CQRS and event-driven architectures. I care less about <em>does it work</em> and more about whether it still works well two years from now.',
     'about.body2':
       "When an idea seems worth building, I don't just think about it — I build it. My own homelab is the best example outside of work: Proxmox, Kubernetes, Terraform, Ansible and Argo CD deploying and monitoring my own projects, end to end.",
     'stack.eyebrow': 'Tools',
@@ -91,10 +77,7 @@ export const ui = {
     'stack.cat.frontend': 'Frontend',
     'stack.cat.infra': 'Infra & DevOps',
     'projects.eyebrow': 'Work',
-    'projects.title': 'Featured projects',
-    'projects.subtitle':
-      "A selection of systems I've designed and built, from idea to deployment.",
-    'projects.featured': 'Featured',
+    'projects.title': "A selection of systems, from idea to deployment",
     'projects.status.live': 'Live',
     'projects.status.wip': 'In progress',
     'projects.status.archived': 'Archived',
@@ -103,14 +86,11 @@ export const ui = {
     'projects.empty': 'Projects are coming soon.',
     'timeline.eyebrow': 'Timeline',
     'timeline.title': 'The road here',
-    'contact.eyebrow': 'Contact',
-    'contact.title': "Let's build something together?",
+    'contact.title': "Shall we build the <em>next system</em> together?",
     'contact.body':
       "Always open to talk about projects, ideas, or just well-designed systems.",
-    'contact.cta': 'Get in touch',
     'footer.rights': 'All rights reserved.',
-    'footer.built':
-      'Designed and built with Astro, Tailwind CSS and Three.js. Self-hosted on my own homelab.',
+    'footer.built': 'Designed and built with Astro and Tailwind CSS. Self-hosted on my own homelab.',
     'lang.switch': 'ES',
   },
 } as const;

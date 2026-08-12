@@ -2,15 +2,13 @@
 import type { CollectionEntry } from 'astro:content';
 import type { Locale } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
-import Icon from './Icon.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
   lang: Locale;
-  index?: number;
 }
 
-const { project, lang, index = 0 } = Astro.props;
+const { project, lang } = Astro.props;
 const t = useTranslations(lang);
 const { data } = project;
 
@@ -19,101 +17,36 @@ const statusLabel = {
   wip: t('projects.status.wip'),
   archived: t('projects.status.archived'),
 }[data.status];
-
-const statusColor = {
-  live: 'bg-primary-soft',
-  wip: 'bg-accent',
-  archived: 'bg-text-dim',
-}[data.status];
-
-// Deterministic (server-side, no randomness) header gradient per project so
-// every card gets a distinct but on-brand visual identity without needing
-// real cover images. Same input always produces the same output.
-function hashString(input: string): number {
-  let hash = 0;
-  for (let i = 0; i < input.length; i++) {
-    hash = (hash << 5) - hash + input.charCodeAt(i);
-    hash |= 0;
-  }
-  return Math.abs(hash);
-}
-
-const GRADIENTS = [
-  'from-primary-dim via-bg-panel to-accent/20',
-  'from-blueprint via-bg-panel to-primary/25',
-  'from-primary/25 via-bg-panel to-primary-dim',
-];
-const hash = hashString(data.groupId);
-const gradient = GRADIENTS[hash % GRADIENTS.length];
-const angle = 130 + (hash % 5) * 25;
-
-const MAX_TAGS = 5;
-const visibleStack = data.stack.slice(0, MAX_TAGS);
-const hiddenStackCount = data.stack.length - visibleStack.length;
 ---
 
-<article
-  data-tilt
-  data-reveal
-  style={`--reveal-delay:${index * 90}ms`}
-  class="tilt-card panel group relative flex h-full flex-col overflow-hidden transition-colors duration-300 hover:border-primary-soft/60"
->
-  <div
-    class:list={['relative flex items-center justify-between overflow-hidden bg-gradient-to-br px-7 py-8', gradient]}
-    style={`background-image: linear-gradient(${angle}deg, var(--tw-gradient-stops))`}
-  >
-    <div class="absolute inset-0 bg-blueprint-grid opacity-40"></div>
-    {
-      data.featured && (
-        <span class="tag relative border-accent-soft/40 text-accent-soft">{t('projects.featured')}</span>
-      )
-    }
-    <span class="relative ml-auto font-display text-4xl font-semibold text-text/10">
-      {String(index + 1).padStart(2, '0')}
+<article class="flex h-full flex-col p-8 transition-colors duration-300 hover:bg-surface sm:p-9">
+  <div class="mb-5 flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-wide text-ink-faint">
+    <span class="flex items-center gap-1.5">
+      <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+      {statusLabel}
     </span>
+    <span>{data.year}</span>
   </div>
 
-  <div class="relative z-10 flex flex-1 flex-col p-7">
-    <div class="mb-3 flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-text-dim">
-      <span class:list={['h-1.5 w-1.5 rounded-full', statusColor]}></span>
-      {statusLabel}
-      <span aria-hidden="true">·</span>
-      <span>{data.year}</span>
-    </div>
+  <h3 class="font-display text-2xl font-medium text-ink">{data.title}</h3>
+  <p class="mt-2 font-display text-[0.98rem] italic text-ink-muted">{data.tagline}</p>
 
-    <h3 class="font-display text-2xl font-semibold text-text">{data.title}</h3>
-    <p class="mt-1 text-sm text-primary-soft">{data.tagline}</p>
+  <p class="mt-5 flex-grow text-sm leading-relaxed text-ink-muted">{data.description}</p>
 
-    <p class="mt-5 line-clamp-3 text-sm leading-relaxed text-text-muted">{data.description}</p>
+  <p class="mt-6 font-mono text-xs leading-loose text-ink-faint">
+    {data.stack.join(' · ')}
+  </p>
 
-    <div class="mt-6 flex flex-wrap gap-2">
-      {visibleStack.map((tech) => <span class="tag">{tech}</span>)}
-      {hiddenStackCount > 0 && <span class="tag">+{hiddenStackCount}</span>}
-    </div>
-
-    <div class="mt-auto flex items-center gap-5 border-t border-line pt-6">
-      {data.links.github && (
-        <a
-          href={data.links.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-text-muted transition-colors hover:text-primary-soft"
-        >
-          <Icon name="github" class="h-4 w-4" />
-          {t('projects.link.github')}
-        </a>
-      )}
-      {data.links.live && (
-        <a
-          href={data.links.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-text-muted transition-colors hover:text-primary-soft"
-        >
-          <Icon name="external" class="h-4 w-4" />
-          {t('projects.link.live')}
-        </a>
-      )}
-    </div>
+  <div class="mt-6 flex items-center gap-6 border-t border-line-soft pt-5">
+    {data.links.github && (
+      <a href={data.links.github} target="_blank" rel="noopener noreferrer" class="text-sm text-ink-muted transition-colors hover:text-accent">
+        {t('projects.link.github')} ↗
+      </a>
+    )}
+    {data.links.live && (
+      <a href={data.links.live} target="_blank" rel="noopener noreferrer" class="text-sm text-ink-muted transition-colors hover:text-accent">
+        {t('projects.link.live')} ↗
+      </a>
+    )}
   </div>
 </article>
