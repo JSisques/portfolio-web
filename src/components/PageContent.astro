@@ -1,0 +1,30 @@
+---
+import type { Locale } from '../i18n/ui';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Now from './Now.astro';
+import About from './About.astro';
+import Stack from './Stack.astro';
+import Projects from './Projects.astro';
+import Timeline from './Timeline.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+---
+
+<Nav lang={lang} />
+<main>
+  <Hero lang={lang} />
+  <Now lang={lang} />
+  <About lang={lang} />
+  <Stack lang={lang} />
+  <Projects lang={lang} />
+  <Timeline lang={lang} />
+  <Contact lang={lang} />
+</main>
+<Footer lang={lang} />

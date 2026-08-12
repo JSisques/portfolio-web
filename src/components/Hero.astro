@@ -1,0 +1,66 @@
+---
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="hero" class="relative flex min-h-[100svh] items-center overflow-hidden">
+  <div class="absolute inset-0 bg-blueprint-grid"></div>
+  <div
+    id="hero-canvas-wrap"
+    class="absolute inset-0"
+  >
+    <canvas id="hero-canvas" class="h-full w-full"></canvas>
+  </div>
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,transparent_0%,var(--color-bg)_85%)]"
+  >
+  </div>
+
+  <div class="section relative z-10 flex flex-col items-start pt-24">
+    <p class="eyebrow mb-6">{t('hero.eyebrow')}</p>
+    <h1 class="heading-lg max-w-3xl">
+      {t('hero.title.line1')}
+      <span class="block text-primary-soft">{t('hero.title.line2')}<span class="text-accent">.</span></span>
+    </h1>
+    <p class="mt-6 max-w-xl text-lg leading-relaxed text-text-muted">
+      {t('hero.subtitle')}
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <a href="#projects" class="btn-primary">{t('hero.cta.projects')}</a>
+      <a href="#contact" class="btn-ghost">{t('hero.cta.contact')}</a>
+    </div>
+  </div>
+
+  <a
+    href="#now"
+    class="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.3em] text-text-dim transition-colors hover:text-primary-soft"
+  >
+    {t('hero.scroll')}
+    <span class="h-8 w-px bg-gradient-to-b from-text-dim to-transparent motion-safe:animate-drift"></span>
+  </a>
+</section>
+
+<script>
+  import { initHeroScene } from '../lib/hero-scene';
+
+  function boot() {
+    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+    const wrap = document.getElementById('hero-canvas-wrap') as HTMLElement | null;
+    if (!canvas || !wrap) return;
+    initHeroScene(canvas, wrap);
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    boot();
+  } else {
+    document.addEventListener('DOMContentLoaded', boot);
+  }
+</script>

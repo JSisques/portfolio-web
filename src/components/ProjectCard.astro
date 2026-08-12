@@ -1,0 +1,79 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+import Icon from './Icon.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  lang: Locale;
+  featured?: boolean;
+}
+
+const { project, lang, featured = false } = Astro.props;
+const t = useTranslations(lang);
+const { data } = project;
+
+const statusLabel = {
+  live: t('projects.status.live'),
+  wip: t('projects.status.wip'),
+  archived: t('projects.status.archived'),
+}[data.status];
+
+const statusColor = {
+  live: 'bg-primary-soft',
+  wip: 'bg-accent',
+  archived: 'bg-text-dim',
+}[data.status];
+---
+
+<article
+  class:list={[
+    'panel group relative flex flex-col overflow-hidden p-7 transition-all duration-300 hover:border-primary-soft/60 hover:-translate-y-1',
+    featured ? 'sm:col-span-2' : '',
+  ]}
+>
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <div class="mb-3 flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-widest text-text-dim">
+        <span class:list={['h-1.5 w-1.5 rounded-full', statusColor]}></span>
+        {statusLabel}
+        <span aria-hidden="true">·</span>
+        <span>{data.year}</span>
+      </div>
+      <h3 class="font-display text-2xl font-semibold text-text">{data.title}</h3>
+      <p class="mt-1 text-sm text-primary-soft">{data.tagline}</p>
+    </div>
+  </div>
+
+  <p class="mt-5 max-w-2xl text-sm leading-relaxed text-text-muted">{data.description}</p>
+
+  <div class="mt-6 flex flex-wrap gap-2">
+    {data.stack.map((tech) => <span class="tag">{tech}</span>)}
+  </div>
+
+  <div class="mt-7 flex items-center gap-5 border-t border-line pt-5">
+    {data.links.github && (
+      <a
+        href={data.links.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-text-muted transition-colors hover:text-primary-soft"
+      >
+        <Icon name="github" class="h-4 w-4" />
+        {t('projects.link.github')}
+      </a>
+    )}
+    {data.links.live && (
+      <a
+        href={data.links.live}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-text-muted transition-colors hover:text-primary-soft"
+      >
+        <Icon name="external" class="h-4 w-4" />
+        {t('projects.link.live')}
+      </a>
+    )}
+  </div>
+</article>

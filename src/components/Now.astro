@@ -1,0 +1,26 @@
+---
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="now" class="relative">
+  <div class="mx-auto w-full max-w-6xl px-6 sm:px-8">
+    <div class="panel flex flex-col gap-4 px-6 py-6 sm:flex-row sm:items-center sm:gap-6 sm:py-5">
+      <span class="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+        </span>
+        {t('now.title')}
+      </span>
+      <p class="text-sm leading-relaxed text-text-muted">{t('now.body')}</p>
+    </div>
+  </div>
+</section>

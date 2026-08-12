@@ -1,0 +1,19 @@
+---
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line px-6 py-10 sm:px-8">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-2 text-center font-mono text-xs text-text-dim sm:flex-row sm:justify-between sm:text-left">
+    <p>&copy; {year} Javier Sisques. {t('footer.rights')}</p>
+    <p>{t('footer.built')}</p>
+  </div>
+</footer>

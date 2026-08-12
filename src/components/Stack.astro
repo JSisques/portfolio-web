@@ -1,0 +1,45 @@
+---
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const groups: { label: string; items: string[] }[] = [
+  { label: t('stack.cat.languages'), items: ['TypeScript', 'JavaScript', 'Python', 'Bash'] },
+  {
+    label: t('stack.cat.backend'),
+    items: ['Node.js', 'NestJS', 'GraphQL', 'PostgreSQL', 'Redis', 'Kafka'],
+  },
+  { label: t('stack.cat.frontend'), items: ['React', 'Next.js', 'Astro', 'Tailwind CSS'] },
+  {
+    label: t('stack.cat.infra'),
+    items: ['Docker', 'Kubernetes', 'Terraform', 'Ansible', 'Argo CD', 'Prometheus'],
+  },
+];
+---
+
+<section id="stack" class="section">
+  <p class="eyebrow mb-6">{t('stack.eyebrow')}</p>
+  <h2 class="heading-md mb-14 max-w-xl">{t('stack.title')}</h2>
+
+  <div class="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+    {groups.map((group) => (
+      <div class="bg-bg-panel px-6 py-8">
+        <h3 class="mb-5 font-mono text-xs uppercase tracking-widest text-text-dim">{group.label}</h3>
+        <ul class="space-y-3">
+          {group.items.map((item) => (
+            <li class="flex items-center gap-2.5 font-display text-sm text-text">
+              <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-soft"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

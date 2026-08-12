@@ -1,0 +1,13 @@
+---
+import { icons, type IconName } from '../lib/icons';
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: className = 'h-5 w-5' } = Astro.props;
+const svg = icons[name];
+---
+
+<svg class={className} viewBox="0 0 24 24" fill="currentColor" set:html={svg} />

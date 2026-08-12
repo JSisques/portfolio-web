@@ -1,0 +1,39 @@
+---
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+import { social } from '../data/social';
+import Icon from './Icon.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="contact" class="section text-center">
+  <div class="mx-auto max-w-2xl">
+    <p class="eyebrow mx-auto mb-6 justify-center">{t('contact.eyebrow')}</p>
+    <h2 class="heading-md">{t('contact.title')}</h2>
+    <p class="mx-auto mt-5 max-w-md text-base leading-relaxed text-text-muted">{t('contact.body')}</p>
+
+    <div class="mt-10 flex flex-col items-center gap-8">
+      <a href={`mailto:${social.email}`} class="btn-primary">
+        <Icon name="mail" class="h-4 w-4" />
+        {t('contact.cta')}
+      </a>
+
+      <div class="flex items-center gap-6 text-text-muted">
+        <a href={social.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="transition-colors hover:text-primary-soft">
+          <Icon name="github" class="h-6 w-6" />
+        </a>
+        {social.linkedin && (
+          <a href={social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="transition-colors hover:text-primary-soft">
+            <Icon name="linkedin" class="h-6 w-6" />
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

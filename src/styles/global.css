@@ -1,0 +1,129 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens — "blueprint" theme: deep navy canvas, electric blue     */
+/* schematic linework, warm amber used only for signal/CTA accents.       */
+/* ---------------------------------------------------------------------- */
+@theme {
+  --color-bg: #05070f;
+  --color-bg-elevated: #0a0f22;
+  --color-bg-panel: #0d1330;
+  --color-blueprint: #14206b;
+  --color-primary: #4169ff;
+  --color-primary-soft: #7d95ff;
+  --color-primary-dim: #1c2a70;
+  --color-accent: #ffb020;
+  --color-accent-soft: #ffcb6b;
+  --color-line: #26337a;
+  --color-text: #e9ecf9;
+  --color-text-muted: #9aa3c7;
+  --color-text-dim: #5c6491;
+
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+
+  --animate-drift: drift 18s ease-in-out infinite;
+  --animate-blink: blink 1.6s steps(2, jump-none) infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-blueprint);
+  border-radius: 999px;
+  border: 2px solid var(--color-bg);
+}
+
+/* Blueprint grid backdrop: faint schematic graph-paper lines. */
+.bg-blueprint-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-mono text-sm font-medium tracking-wide transition-all duration-300;
+}
+
+@layer components {
+  .section {
+    @apply relative mx-auto w-full max-w-6xl px-6 py-24 sm:px-8 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-primary-soft;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply h-px w-6 bg-primary-soft;
+  }
+
+  .heading-lg {
+    @apply font-display text-4xl font-semibold tracking-tight text-text sm:text-5xl lg:text-6xl;
+  }
+
+  .heading-md {
+    @apply font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-white shadow-[0_0_0_1px_rgba(65,105,255,0.4),0_8px_30px_-8px_rgba(65,105,255,0.7)] hover:shadow-[0_0_0_1px_rgba(65,105,255,0.6),0_12px_40px_-6px_rgba(65,105,255,0.9)] hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply btn border border-line text-text-muted hover:border-primary-soft hover:text-text hover:-translate-y-0.5;
+  }
+
+  .panel {
+    @apply rounded-2xl border border-line bg-bg-panel/60 backdrop-blur-sm;
+  }
+
+  .tag {
+    @apply rounded-full border border-line px-3 py-1 font-mono text-[0.65rem] uppercase tracking-wider text-text-muted;
+  }
+}
