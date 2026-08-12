@@ -12,11 +12,11 @@ export const ui = {
     'nav.projects': 'Proyectos',
     'nav.timeline': 'Trayectoria',
     'nav.contact': 'Contacto',
-    'hero.eyebrow': 'Ingeniero de software',
+    'hero.eyebrow': 'Backend Engineer',
     'hero.title.line1': 'Construyo',
     'hero.title.line2': 'sistemas',
     'hero.subtitle':
-      'Diseño y construyo software y la infraestructura que lo sostiene: backends, plataformas cloud-native y el homelab que las mantiene funcionando.',
+      'Backend engineer especializado en TypeScript y NestJS: arquitecturas DDD, CQRS y orientadas a eventos. Diseño software pensado para seguir funcionando bien dentro de dos años, y la infraestructura —mi propio homelab incluido— que lo sostiene.',
     'hero.cta.projects': 'Ver proyectos',
     'hero.cta.contact': 'Hablemos',
     'hero.scroll': 'Scroll',
@@ -26,9 +26,9 @@ export const ui = {
     'about.eyebrow': 'Sobre mí',
     'about.title': 'De la idea al sistema en producción',
     'about.body1':
-      'Soy desarrollador de software y me apasiona diseñar sistemas: no solo escribir features, sino pensar en arquitectura, escalabilidad, observabilidad y todo lo que hace que algo siga funcionando a las tres de la madrugada.',
+      'Llevo más de 4 años construyendo el "motor" que no se ve: backends escalables y mantenibles en TypeScript y NestJS, con foco en Domain-Driven Design, CQRS y arquitecturas orientadas a eventos. Me interesa menos "que funcione" y más "que siga funcionando bien dentro de dos años".',
     'about.body2':
-      'Eso me lleva a moverme entre el backend, la infraestructura como código y la automatización. Mi propio homelab es el mejor ejemplo: Proxmox, Kubernetes, Terraform, Ansible y Argo CD desplegando y monitorizando mis propios proyectos, punta a punta.',
+      'Cuando una idea me parece útil, no me quedo solo en pensarla: la construyo. Mi propio homelab es el mejor ejemplo fuera del trabajo — Proxmox, Kubernetes, Terraform, Ansible y Argo CD desplegando y monitorizando mis propios proyectos, punta a punta.',
     'stack.eyebrow': 'Herramientas',
     'stack.title': 'Con lo que trabajo',
     'stack.cat.languages': 'Lenguajes',
@@ -66,11 +66,11 @@ export const ui = {
     'nav.projects': 'Projects',
     'nav.timeline': 'Timeline',
     'nav.contact': 'Contact',
-    'hero.eyebrow': 'Software Engineer',
+    'hero.eyebrow': 'Backend Engineer',
     'hero.title.line1': 'I build',
     'hero.title.line2': 'systems',
     'hero.subtitle':
-      'I design and build software and the infrastructure that keeps it alive: backends, cloud-native platforms, and the homelab running underneath.',
+      'Backend engineer specialized in TypeScript and NestJS: DDD, CQRS and event-driven architectures. I design software meant to still work well two years from now, and the infrastructure — my own homelab included — that keeps it running.',
     'hero.cta.projects': 'View projects',
     'hero.cta.contact': "Let's talk",
     'hero.scroll': 'Scroll',
@@ -80,9 +80,9 @@ export const ui = {
     'about.eyebrow': 'About me',
     'about.title': 'From idea to system in production',
     'about.body1':
-      "I'm a software developer and I love designing systems: not just shipping features, but thinking through architecture, scalability, observability, and everything that keeps something running at 3am.",
+      'I\'ve spent 4+ years building the "engine" nobody sees: scalable, maintainable backends in TypeScript and NestJS, focused on Domain-Driven Design, CQRS and event-driven architectures. I care less about "does it work" and more about "will it still work well two years from now".',
     'about.body2':
-      'That pulls me across backend, infrastructure as code, and automation. My own homelab is the best example: Proxmox, Kubernetes, Terraform, Ansible and Argo CD deploying and monitoring my own projects, end to end.',
+      "When an idea seems worth building, I don't just think about it — I build it. My own homelab is the best example outside of work: Proxmox, Kubernetes, Terraform, Ansible and Argo CD deploying and monitoring my own projects, end to end.",
     'stack.eyebrow': 'Tools',
     'stack.title': 'What I work with',
     'stack.cat.languages': 'Languages',
