@@ -24,12 +24,12 @@ const groups: { label: string; items: string[] }[] = [
 ---
 
 <section id="stack" class="section">
-  <p class="eyebrow mb-6">{t('stack.eyebrow')}</p>
-  <h2 class="heading-md mb-14 max-w-xl">{t('stack.title')}</h2>
+  <p class="eyebrow mb-6" data-reveal>{t('stack.eyebrow')}</p>
+  <h2 class="heading-md mb-14 max-w-xl" data-reveal>{t('stack.title')}</h2>
 
   <div class="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-    {groups.map((group) => (
-      <div class="bg-bg-panel px-6 py-8">
+    {groups.map((group, i) => (
+      <div class="bg-bg-panel px-6 py-8 transition-colors duration-300 hover:bg-bg-panel-strong" data-reveal data-reveal-delay={i * 80}>
         <h3 class="mb-5 font-mono text-xs uppercase tracking-widest text-text-dim">{group.label}</h3>
         <ul class="space-y-3">
           {group.items.map((item) => (

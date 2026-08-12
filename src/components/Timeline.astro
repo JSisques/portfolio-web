@@ -13,12 +13,12 @@ const entries = timeline[lang];
 ---
 
 <section id="timeline" class="section">
-  <p class="eyebrow mb-6">{t('timeline.eyebrow')}</p>
-  <h2 class="heading-md mb-14 max-w-xl">{t('timeline.title')}</h2>
+  <p class="eyebrow mb-6" data-reveal>{t('timeline.eyebrow')}</p>
+  <h2 class="heading-md mb-14 max-w-xl" data-reveal>{t('timeline.title')}</h2>
 
   <ol class="relative space-y-10 border-l border-line pl-8">
-    {entries.map((entry) => (
-      <li class="relative">
+    {entries.map((entry, i) => (
+      <li class="relative" data-reveal data-reveal-delay={i * 100}>
         <span class="absolute -left-[calc(2rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full bg-primary-soft shadow-[0_0_0_4px_var(--color-bg-panel)]"></span>
         <p class="font-mono text-xs uppercase tracking-widest text-text-dim">{entry.period}</p>
         <h3 class="mt-2 font-display text-xl font-semibold text-text">
