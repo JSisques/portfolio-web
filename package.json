@@ -24,13 +24,5 @@
     "@types/three": "^0.185.4",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.7.3"
-  },
-  "pnpm": {
-    "overrides": {
-      "@astrojs/language-server": "2.16.13",
-      "magic-string": "1.1.0",
-      "smol-toml": "1.7.1",
-      "@napi-rs/wasm-runtime": "1.2.2"
-    }
   }
 }

@@ -1,0 +1,8 @@
+# Pins transitive deps that were flagged by CI's pnpm supply-chain
+# minimumReleaseAge policy (published too recently at install time) —
+# see the "Pin deps to fix pnpm supply-chain policy failure in CI" commit.
+overrides:
+  '@astrojs/language-server': '2.16.13'
+  magic-string: '1.1.0'
+  smol-toml: '1.7.1'
+  '@napi-rs/wasm-runtime': '1.2.2'
