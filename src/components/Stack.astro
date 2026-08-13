@@ -29,9 +29,9 @@ const groups: { label: string; items: string[] }[] = [
     <h2>{t('stack.title')}</h2>
   </div>
 
-  <div class="indent grid grid-cols-1 border-t border-l border-line-soft sm:grid-cols-2 lg:grid-cols-4" data-reveal>
+  <div class="indent grid grid-cols-1 border-t border-l border-line-soft sm:grid-cols-2 lg:grid-cols-4">
     {groups.map((group) => (
-      <div class="border-r border-b border-line-soft px-6 py-6">
+      <div class="border-r border-b border-line-soft px-6 py-6" data-reveal>
         <h3 class="mb-4 font-mono text-[0.7rem] uppercase tracking-wide text-ink-faint">{group.label}</h3>
         <ul class="space-y-2.5">
           {group.items.map((item) => (
