@@ -26,9 +26,9 @@ const projects = (await getCollection('projects', ({ data }) => data.lang === la
     projects.length === 0 ? (
       <p class="indent font-mono text-sm text-ink-faint">{t('projects.empty')}</p>
     ) : (
-      <div class="indent grid items-stretch border border-line-soft sm:grid-cols-2" data-reveal>
+      <div class="indent grid items-stretch border border-line-soft sm:grid-cols-2">
         {projects.map((project, i) => (
-          <div class:list={['flex', i > 0 && 'border-t border-line-soft sm:border-t-0 sm:border-l']}>
+          <div class:list={['flex', i > 0 && 'border-t border-line-soft sm:border-t-0 sm:border-l']} data-reveal>
             <ProjectCard project={project} lang={lang} />
           </div>
         ))}

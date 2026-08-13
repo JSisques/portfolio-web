@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import type { Locale } from '../i18n/ui';
 import { withBase } from '../lib/paths';
 
@@ -27,6 +28,8 @@ const { lang, title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta name="twitter:card" content="summary" />
+
+    <ClientRouter />
   </head>
   <body class="bg-ground font-body text-ink antialiased">
     <slot />
@@ -34,11 +37,11 @@ const { lang, title, description } = Astro.props;
 </html>
 
 <script>
-  import { initInteractions } from '../lib/interactions';
+  import { initNavScroll } from '../lib/interactions';
+  import { initAnimations } from '../lib/animations';
 
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    initInteractions();
-  } else {
-    document.addEventListener('DOMContentLoaded', initInteractions);
-  }
+  document.addEventListener('astro:page-load', () => {
+    initNavScroll();
+    initAnimations();
+  });
 </script>

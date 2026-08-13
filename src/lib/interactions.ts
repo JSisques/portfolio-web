@@ -1,45 +1,20 @@
-// Small, dependency-free progressive-enhancement layer: scroll reveal and
-// nav scroll/active state. Everything respects prefers-reduced-motion.
+// Nav scroll state and active-section highlighting. Framework-free — plain
+// class toggling, independent of prefers-reduced-motion. Re-run on every
+// astro:page-load, so a previous run's listeners are aborted first.
 
-const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let controller: AbortController | undefined;
 
-function initReveal() {
-  const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
-  if (!targets.length) return;
+export function initNavScroll() {
+  controller?.abort();
+  controller = new AbortController();
+  const { signal } = controller;
 
-  document.documentElement.classList.add('reveal-ready');
-
-  targets.forEach((el) => {
-    const delay = el.dataset.revealDelay;
-    if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
-  });
-
-  if (reducedMotion()) {
-    targets.forEach((el) => el.classList.add('is-in'));
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.add('is-in');
-        observer.unobserve(entry.target);
-      }
-    },
-    { threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
-  );
-
-  targets.forEach((el) => observer.observe(el));
-}
-
-function initNavScroll() {
   const nav = document.querySelector<HTMLElement>('[data-nav]');
   if (!nav) return;
 
   const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
   onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true, signal });
 
   const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]'));
   if (!links.length) return;
@@ -61,9 +36,5 @@ function initNavScroll() {
   );
 
   sections.forEach((section) => observer.observe(section));
-}
-
-export function initInteractions() {
-  initReveal();
-  initNavScroll();
+  signal.addEventListener('abort', () => observer.disconnect());
 }
